@@ -1,0 +1,56 @@
+buildscript {
+    ext {
+        creds = {
+            username = findProperty("github.user") ?: System.getenv("GITHUB_ACTOR")
+            password = findProperty("github.token") ?: System.getenv("GITHUB_TOKEN")
+        }
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url uri("https://maven.pkg.github.com/trevorism/gradle-release-plugin")
+            credentials creds
+        }
+    }
+    dependencies {
+        classpath 'com.trevorism:gradle-release-plugin:0.7.0'
+    }
+}
+
+plugins{
+    id("io.micronaut.library") version "3.7.8"
+    id "jacoco"
+}
+
+apply plugin: "com.trevorism.gradle.release"
+
+repositories {
+    mavenCentral()
+    maven {
+        url uri("https://maven.pkg.github.com/trevorism/secure-utils")
+        credentials creds
+    }
+}
+
+micronaut{
+    version = "3.9.2"
+}
+
+dependencies {
+    api 'com.trevorism:micronaut-security-utils:0.9.4'
+    api 'com.trevorism:secure-http-utils:3.1.0'
+
+    testImplementation 'org.slf4j:slf4j-nop:2.0.7'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
