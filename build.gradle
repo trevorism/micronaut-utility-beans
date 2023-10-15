@@ -18,7 +18,7 @@ buildscript {
 }
 
 plugins{
-    id("io.micronaut.library") version "3.7.8"
+    id("io.micronaut.library") version "4.1.1"
     id "jacoco"
 }
 
@@ -33,16 +33,16 @@ repositories {
 }
 
 micronaut{
-    version = "3.9.2"
+    version = "4.1.4"
 }
 
 dependencies {
-    api 'com.trevorism:micronaut-security-utils:0.9.4'
+    api 'com.trevorism:micronaut-security-utils:1.0.0'
     api 'com.trevorism:secure-http-utils:3.1.0'
 
-    testImplementation 'org.slf4j:slf4j-nop:2.0.7'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'org.slf4j:slf4j-nop:2.0.9'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 }
 
 test {
