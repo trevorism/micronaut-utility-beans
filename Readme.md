@@ -6,7 +6,8 @@
  
 Latest [Version](https://github.com/trevorism/micronaut-utility-beans/releases/latest)
  
-Simple java library inject correlation id, and bearer tokens in multiple requests.
+This simple java library injects correlation id, and authentication tokens into requests.
+
  
 ## How to Use 
 
