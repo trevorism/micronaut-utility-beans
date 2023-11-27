@@ -13,12 +13,23 @@ public class PassThruObtainTokenStrategy extends ObtainTokenFromParameter implem
     public void setRequest(HttpRequest<?> request) {
         String authValue = request.getHeaders().get(SecureHttpClient.AUTHORIZATION);
 
-        if(authValue == null) {
-            setToken("");
-        }
-        else{
+        if (bearerTokenDoesNotExistInAuthHeader(authValue)) {
+            setToken(getAuthTokenFromSessionCookie(request));
+        } else {
             String tokenValue = authValue.substring(SecureHttpClient.BEARER_.length());
             setToken(tokenValue);
         }
+    }
+
+    private String getAuthTokenFromSessionCookie(HttpRequest<?> request) {
+        try {
+            return request.getCookies().get("session").getValue();
+        } catch (Exception ignored) {
+            return "";
+        }
+    }
+
+    private static boolean bearerTokenDoesNotExistInAuthHeader(String authValue) {
+        return authValue == null;
     }
 }
