@@ -5,12 +5,14 @@ import com.trevorism.http.HttpClient;
 import com.trevorism.https.SecureHttpClient;
 import com.trevorism.https.SecureHttpClientBase;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.inject.Singleton;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Singleton
+@Named("passThruSecureHttpClient")
 public class PassThruSecureHttpClient extends SecureHttpClientBase implements SecureHttpClient {
 
     @Inject
