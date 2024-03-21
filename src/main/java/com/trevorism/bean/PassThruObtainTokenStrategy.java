@@ -16,8 +16,15 @@ public class PassThruObtainTokenStrategy extends ObtainTokenFromParameter implem
         if (bearerTokenDoesNotExistInAuthHeader(authValue)) {
             setToken(getAuthTokenFromSessionCookie(request));
         } else {
-            String tokenValue = authValue.substring(SecureHttpClient.BEARER_.length());
-            setToken(tokenValue);
+            setToken(getAuthTokenFromAuthValue(authValue));
+        }
+    }
+
+    private static String getAuthTokenFromAuthValue(String authValue) {
+        try {
+            return authValue.substring(SecureHttpClient.BEARER_.length());
+        } catch (Exception ignored) {
+            return "";
         }
     }
 
