@@ -37,6 +37,6 @@ public class PassThruObtainTokenStrategy extends ObtainTokenFromParameter implem
     }
 
     private static boolean bearerTokenDoesNotExistInAuthHeader(String authValue) {
-        return authValue == null;
+        return authValue == null || authValue.isEmpty();
     }
 }

@@ -4,7 +4,6 @@ import com.trevorism.http.HeadersHttpResponse;
 import com.trevorism.http.HttpClient;
 import com.trevorism.https.SecureHttpClient;
 import com.trevorism.https.SecureHttpClientBase;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.inject.Singleton;
 
@@ -14,9 +13,6 @@ import java.util.Map;
 @Singleton
 @Named("passThruSecureHttpClient")
 public class PassThruSecureHttpClient extends SecureHttpClientBase implements SecureHttpClient {
-
-    @Inject
-    private CorrelationIdProvider correlationIdProvider;
 
     public PassThruSecureHttpClient(PassThruObtainTokenStrategy strategy) {
         super(strategy);
@@ -63,9 +59,6 @@ public class PassThruSecureHttpClient extends SecureHttpClientBase implements Se
     protected Map<String, String> createHeaderMap() {
         Map<String, String> headersMap = new HashMap<>();
         headersMap.put(AUTHORIZATION, SecureHttpClient.BEARER_ + this.getObtainTokenStrategy().getToken());
-        if (correlationIdProvider != null) {
-            headersMap.put(CorrelationIdProvider.X_CORRELATION_ID, correlationIdProvider.getCorrelationId());
-        }
         return headersMap;
     }
 }
