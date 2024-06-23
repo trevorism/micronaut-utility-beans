@@ -31,8 +31,8 @@ class PassThruSecureHttpClientTest {
         PassThruSecureHttpClient passThruSecureHttpClient = new PassThruSecureHttpClient(new EchoHttpClient(), passThruObtainTokenStrategy);
         passThruObtainTokenStrategy.setRequest(simpleHttpRequest);
 
-        assertEquals("bearer 1234", passThruSecureHttpClient.get("/", new HashMap<>()).getHeaders().get(SecureHttpClient.AUTHORIZATION));
-        assertEquals("bearer 1234", passThruSecureHttpClient.post("/","{}", new HashMap<>()).getHeaders().get(SecureHttpClient.AUTHORIZATION));
+        assertEquals("Bearer 1234", passThruSecureHttpClient.get("/", new HashMap<>()).getHeaders().get(SecureHttpClient.AUTHORIZATION));
+        assertEquals("Bearer 1234", passThruSecureHttpClient.post("/","{}", new HashMap<>()).getHeaders().get(SecureHttpClient.AUTHORIZATION));
 
 
     }
