@@ -6,7 +6,7 @@
  
 Latest [Version](https://github.com/trevorism/micronaut-utility-beans/releases/latest)
  
-This simple java library injects correlation id, and authentication tokens into requests.
+This simple java library injects authentication tokens into HTTPS requests.
 
  
 ## How to Use 
