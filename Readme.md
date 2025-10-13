@@ -6,8 +6,8 @@
  
 Latest [Version](https://github.com/trevorism/micronaut-utility-beans/releases/latest)
  
-This simple java library injects authentication tokens into HTTPS requests.
-
+This java library injects authentication tokens from incoming requests into outgoing requests. 
+It is useful for microservice to microservice communication where the authentication token needs to be passed along.
  
 ## How to Use 
 
