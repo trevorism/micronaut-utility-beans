@@ -18,7 +18,7 @@ buildscript {
 }
 
 plugins{
-    id("io.micronaut.library") version "4.5.5"
+    id("io.micronaut.library") version "5.0.0"
     id "jacoco"
 }
 
@@ -33,17 +33,24 @@ repositories {
 }
 
 micronaut{
-    version = "4.9.4"
+    version = "5.0.2"
+    importMicronautPlatform = false
 }
 
 dependencies {
-    api 'com.trevorism:micronaut-security-utils:2.3.3'
-    api 'com.trevorism:secure-http-utils:3.2.0'
-    implementation 'io.micronaut:micronaut-http:4.9.12'
+    api 'com.trevorism:micronaut-security-utils:2.4.0'
+    api 'com.trevorism:secure-http-utils:3.2.1'
+    implementation 'io.micronaut:micronaut-http:5.0.2'
 
-    testImplementation 'org.junit.platform:junit-platform-launcher:6.0.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:6.0.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:6.0.0'
+    annotationProcessor 'io.micronaut:micronaut-inject-java:5.0.2'
+    annotationProcessor 'io.micronaut.security:micronaut-security-annotations:5.0.0'
+    testAnnotationProcessor 'io.micronaut:micronaut-inject-java:5.0.2'
+    testAnnotationProcessor 'io.micronaut.security:micronaut-security-annotations:5.0.0'
+
+    testImplementation(platform("org.junit:junit-bom:6.1.0"))
+    testImplementation 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
 test {
@@ -52,6 +59,6 @@ test {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
 }
